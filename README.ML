@@ -38,3 +38,18 @@ Then, open Advertising data and there open Manufacturer data. In field "16-bit C
 For example, 0x0102. This means next: "High potential on pin number 2".
 After that, press OK.
 You can then enable new advertiser and you will have high potential on pin number 2 on your Arduino.
+
+In order to save the data in database, install MySQL and create new database.
+Then, create or update "data.xml" file with data. After that, run db_connection.py script. 
+NOTE: in script modify next peace of code accordingly to your database settings:
+
+````
+mydb = mysql.connector.connect(
+  host="",
+  user="",
+  password="",
+  database=""
+)
+````
+
+If everything is ok, new data will appear in your database.
