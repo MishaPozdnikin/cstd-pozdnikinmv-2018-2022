@@ -1,18 +1,15 @@
 Student: Pozdnikin Mykhailo
-Group: CE-47
 Subject: CSDT
 
-Project name: PongGame
-Programming language: C
+Project name: Ship for carpfishing
+Programming language: C, C++
 
-Additional tools/utils: Bash, Make
-HW interface: UART
+Additional tools/utils: Make, CMake
+
+Control modes: Manual, Wi-fi, BT
+
+Actions: move forward, move backward, move leftward, move rightward, turn led on and off
+
+HW-interface: SPI
+
 Data driven format: xml
-
-Play modes: Man vs AI, Man vs Man, AI vs AI
-
-AI supports next complexity levels: Random move, Win strategy
-
-Actions: New, Save, Load
-
-The proposal for data driven approach: configuration (saved in configuration file or DB): board size, distance, tool size, win statement, lose statement, AI parameters
