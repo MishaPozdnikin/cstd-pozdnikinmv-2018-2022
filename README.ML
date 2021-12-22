@@ -38,3 +38,5 @@ Then, open Advertising data and there open Manufacturer data. In field "16-bit C
 For example, 0x0102. This means next: "High potential on pin number 2".
 After that, press OK.
 You can then enable new advertiser and you will have high potential on pin number 2 on your Arduino.
+
+Related tag for task 5: https://github.com/MishaPozdnikin/csdt-pozdnikinmv-2122/releases/tag/ShipForCarpfishing_1.0_512021513 
