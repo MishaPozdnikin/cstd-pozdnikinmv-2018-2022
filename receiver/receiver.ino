@@ -9,19 +9,25 @@ static FILE *serial_stream = fdevopen(serial_fputchar, NULL);
 RF24 radio(8,7);
 byte address[][6] = {"1Node","2Node","3Node","4Node","5Node","6Node"};
 
-int engineLeftForward = 10;
-int engineLeftBackward = 9;
+long engineLeftForward = 10;
+long engineLeftBackward = 9;
 
-int engineRightForward = 6;
-int engineRightBackward = 5;
+long engineRightForward = 6;
+long engineRightBackward = 5;
 
-int LED_PIN = 2;
-int led_prev = 0;
+long engineOpen = 3;
+long engineClose = 4;
 
-long gotByte[3];
+long LED_PIN = 2;
+long led_prev = 0;
 
-int high_prec = 250;
-int low_prec = 1;
+long EF = A4;
+long EB = A5;
+
+long gotByte[5];
+
+long high_prec = 250;
+long low_prec = 1;
 
 void setup()
 {
@@ -30,6 +36,8 @@ void setup()
   pinMode(engineLeftForward, OUTPUT);
   pinMode(engineLeftBackward, OUTPUT);
   pinMode(engineRightForward, OUTPUT);
+  pinMode(EF, OUTPUT);
+  pinMode(EB, OUTPUT);
   radio.begin();
   radio.setAutoAck(1);        //режим підтвердження прийому
   radio.setRetries(0,15);     //(час між спробами досягти, кількість спроб)
@@ -50,7 +58,7 @@ void loop(void)
     {
       if (gotByte[0] > low_prec && gotByte[0] < high_prec) 
       {
-        analogWrite(engineLeftForward, gotByte[0]);
+        analogWrite(engineLeftForward, gotByte[1]);
         analogWrite(engineRightForward, gotByte[1] - gotByte[0]);
       } 
       else if (gotByte[0] < -low_prec && gotByte[0] > -high_prec) 
@@ -115,5 +123,7 @@ void loop(void)
       analogWrite(engineLeftBackward, 0);
     }
   }
-  printf("SW = %d, X = %d, Y = %d\n", gotByte[2], gotByte[0], gotByte[1]);
+  digitalWrite(EF, gotByte[3]);
+  digitalWrite(EB, gotByte[4]);
+  printf("SW = %ld, X = %ld, Y = %ld, EF = %ld, EB = %ld\n", gotByte[2], gotByte[0], gotByte[1], gotByte[3], gotByte[4]);
 }
